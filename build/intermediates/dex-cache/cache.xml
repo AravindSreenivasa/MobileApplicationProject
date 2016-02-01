@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="D:\study\Spring 16\MC\assignment\1\MobileApplicationProject\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="6cbc7773921fcfedbe55657578f0cbfe614778dc">
+        <dex dex="D:\study\Spring 16\MC\assignment\1\MobileApplicationProject\app\build\intermediates\pre-dexed\debug\classes-7301bf42cb73c6800ac1ac438ded862f73270944.jar" />
+    </item>
+    <item
+        jar="D:\study\Spring 16\MC\assignment\1\MobileApplicationProject\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.1\jars\libs\internal_impl-23.1.1.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="a4de9c81ae239414e1ed0f86441b02abaf29bca9">
+        <dex dex="D:\study\Spring 16\MC\assignment\1\MobileApplicationProject\app\build\intermediates\pre-dexed\debug\internal_impl-23.1.1-6ee13ff6767531c74cb42afac3ddf90dde573edf.jar" />
+    </item>
+    <item
+        jar="D:\study\Spring 16\MC\assignment\1\MobileApplicationProject\app\build\intermediates\exploded-aar\MobileApplicationProject\GraphView\unspecified\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="7bc65cb1a1afe5d43f0168619fb84ebc936caee4">
+        <dex dex="D:\study\Spring 16\MC\assignment\1\MobileApplicationProject\app\build\intermediates\pre-dexed\debug\classes-86588a3d839cf3a0c1528139e0e14d2a0f63f87c.jar" />
+    </item>
+    <item
+        jar="D:\study\Spring 16\MC\assignment\1\MobileApplicationProject\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.1.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="5c5699834e9722f1c288fea2de82725d078ba127">
+        <dex dex="D:\study\Spring 16\MC\assignment\1\MobileApplicationProject\app\build\intermediates\pre-dexed\debug\classes-daa8d815bca3d398e3ff1e2b51df77c5493f78eb.jar" />
+    </item>
+    <item
+        jar="C:\Users\Gautam\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.1.1\support-annotations-23.1.1.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="8d680ba5a623724d1fb0e81c36a790f023a6cede">
+        <dex dex="D:\study\Spring 16\MC\assignment\1\MobileApplicationProject\app\build\intermediates\pre-dexed\debug\support-annotations-23.1.1-7b0cb246272431abd6c0c87bd146a200eb7a288e.jar" />
+    </item>
+
+</items>

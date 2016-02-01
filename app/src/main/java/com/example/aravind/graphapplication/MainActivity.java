@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.RadioGroup;
 
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.helper.StaticLabelsFormatter;
@@ -81,10 +82,12 @@ public class MainActivity extends AppCompatActivity {
         EditText name = (EditText)findViewById(R.id.nameText);
         EditText id = (EditText)findViewById(R.id.idText);
         EditText age = (EditText)findViewById(R.id.ageText);
+        RadioGroup radioGroup = (RadioGroup) findViewById(R.id.sexGroup);
 
         name.setText("");
         age.setText("");
         id.setText("");
+        radioGroup.clearCheck();
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

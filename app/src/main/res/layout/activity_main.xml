@@ -26,9 +26,9 @@
         android:layout_height="250dp"
         android:id="@+id/graph"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="19dp" />
+        android:layout_marginBottom="19dp"
+        android:layout_alignLeft="@+id/run_button"
+        android:layout_alignStart="@+id/run_button" />
 
     <Button
         android:layout_width="wrap_content"
@@ -102,6 +102,14 @@
         android:layout_alignRight="@+id/Patient_id_textView"
         android:layout_alignEnd="@+id/Patient_id_textView" />
 
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/sexGroup"
+        android:orientation="horizontal"
+        android:layout_above="@+id/nameText"
+        android:layout_alignRight="@+id/nameText"
+        android:layout_alignEnd="@+id/nameText">
     <RadioButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -121,6 +129,8 @@
         android:layout_alignTop="@+id/idText"
         android:layout_alignRight="@+id/nameText"
         android:layout_alignEnd="@+id/nameText" />
+
+    </RadioGroup>
 
     <TextView
         android:text="Patient Name :"
@@ -142,8 +152,29 @@
         android:layout_below="@+id/idText"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignLeft="@+id/MaleradioButton"
-        android:layout_alignStart="@+id/MaleradioButton" />
+        android:layout_toRightOf="@+id/idText"
+        android:layout_toEndOf="@+id/idText" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="X-Axis"
+        android:id="@+id/textView3"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/idText"
+        android:layout_toStartOf="@+id/idText" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Y-axis"
+        android:id="@+id/textView4"
+        android:layout_marginTop="80dp"
+        android:layout_alignTop="@+id/graph"
+        android:layout_toLeftOf="@+id/graph"
+        android:layout_toStartOf="@+id/graph" />
 
 
 </RelativeLayout>

@@ -2,39 +2,39 @@
 <items version="2" >
 
     <item
-        jar="D:\study\Spring 16\MC\assignment\1\MobileApplicationProject\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.1\jars\classes.jar"
+        jar="C:\Users\Aravind\AndroidStudioProjects\GraphApplication\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.1\jars\classes.jar"
         jumboMode="false"
         revision="23.0.1"
         sha1="6cbc7773921fcfedbe55657578f0cbfe614778dc">
-        <dex dex="D:\study\Spring 16\MC\assignment\1\MobileApplicationProject\app\build\intermediates\pre-dexed\debug\classes-7301bf42cb73c6800ac1ac438ded862f73270944.jar" />
+        <dex dex="C:\Users\Aravind\AndroidStudioProjects\GraphApplication\app\build\intermediates\pre-dexed\release\classes-65f14f9c1499fbb9359594cd4d12a70723bf80dc.jar" />
     </item>
     <item
-        jar="D:\study\Spring 16\MC\assignment\1\MobileApplicationProject\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.1\jars\libs\internal_impl-23.1.1.jar"
+        jar="C:\Users\Aravind\AndroidStudioProjects\GraphApplication\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.1\jars\libs\internal_impl-23.1.1.jar"
         jumboMode="false"
         revision="23.0.1"
         sha1="a4de9c81ae239414e1ed0f86441b02abaf29bca9">
-        <dex dex="D:\study\Spring 16\MC\assignment\1\MobileApplicationProject\app\build\intermediates\pre-dexed\debug\internal_impl-23.1.1-6ee13ff6767531c74cb42afac3ddf90dde573edf.jar" />
+        <dex dex="C:\Users\Aravind\AndroidStudioProjects\GraphApplication\app\build\intermediates\pre-dexed\release\internal_impl-23.1.1-958ac648e8376986cf934db297bb115639060ecf.jar" />
     </item>
     <item
-        jar="D:\study\Spring 16\MC\assignment\1\MobileApplicationProject\app\build\intermediates\exploded-aar\MobileApplicationProject\GraphView\unspecified\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="7bc65cb1a1afe5d43f0168619fb84ebc936caee4">
-        <dex dex="D:\study\Spring 16\MC\assignment\1\MobileApplicationProject\app\build\intermediates\pre-dexed\debug\classes-86588a3d839cf3a0c1528139e0e14d2a0f63f87c.jar" />
-    </item>
-    <item
-        jar="D:\study\Spring 16\MC\assignment\1\MobileApplicationProject\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.1.1\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="5c5699834e9722f1c288fea2de82725d078ba127">
-        <dex dex="D:\study\Spring 16\MC\assignment\1\MobileApplicationProject\app\build\intermediates\pre-dexed\debug\classes-daa8d815bca3d398e3ff1e2b51df77c5493f78eb.jar" />
-    </item>
-    <item
-        jar="C:\Users\Gautam\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.1.1\support-annotations-23.1.1.jar"
+        jar="C:\Users\Aravind\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.1.1\support-annotations-23.1.1.jar"
         jumboMode="false"
         revision="23.0.1"
         sha1="8d680ba5a623724d1fb0e81c36a790f023a6cede">
-        <dex dex="D:\study\Spring 16\MC\assignment\1\MobileApplicationProject\app\build\intermediates\pre-dexed\debug\support-annotations-23.1.1-7b0cb246272431abd6c0c87bd146a200eb7a288e.jar" />
+        <dex dex="C:\Users\Aravind\AndroidStudioProjects\GraphApplication\app\build\intermediates\pre-dexed\release\support-annotations-23.1.1-bd7af902c4cc05dc2946bd959cb7db0d736bc5b2.jar" />
+    </item>
+    <item
+        jar="C:\Users\Aravind\AndroidStudioProjects\GraphApplication\app\build\intermediates\exploded-aar\GraphApplication\GraphView\unspecified\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="dfa1daa8907093066f743734845045ce07524def">
+        <dex dex="C:\Users\Aravind\AndroidStudioProjects\GraphApplication\app\build\intermediates\pre-dexed\release\classes-cf26c639efd15975b659b680a5e99acdb884b5f8.jar" />
+    </item>
+    <item
+        jar="C:\Users\Aravind\AndroidStudioProjects\GraphApplication\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.1.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="5c5699834e9722f1c288fea2de82725d078ba127">
+        <dex dex="C:\Users\Aravind\AndroidStudioProjects\GraphApplication\app\build\intermediates\pre-dexed\release\classes-4cf5a5aec157f75b261704cff53c1c2c731f0acb.jar" />
     </item>
 
 </items>

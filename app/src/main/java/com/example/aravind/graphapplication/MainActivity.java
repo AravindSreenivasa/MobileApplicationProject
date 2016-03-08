@@ -9,11 +9,14 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 
+import com.example.aravind.graphapplication.databasehelper.DatabaseMethods;
+import com.example.aravind.graphapplication.sensoractivities.sensorHelper;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.helper.StaticLabelsFormatter;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -25,8 +28,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        sensorHelper obj = new sensorHelper(this);
 
-        buildUI();
     }
 
     @Override
@@ -36,24 +39,7 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    private void buildUI() {
 
-      /*  this.graph = (GraphView) findViewById(R.id.graph);
-       // ArrayList<DataPoint> graph_points = new ArrayList();
-       // graph_points.add(new DataPoint(x,y));
-        this.series = new LineGraphSeries<DataPoint>(new DataPoint[] {
-                new DataPoint(x-1,y-1),
-                new DataPoint(x,y),
-                new DataPoint(x+1,y+1)
-
-        });
-        graph.addSeries(series);*/
-       /* StaticLabelsFormatter staticLabelsFormatter = new StaticLabelsFormatter(graph);
-        staticLabelsFormatter.setHorizontalLabels(new String[] {"old", "middle", "new"});
-        staticLabelsFormatter.setVerticalLabels(new String[] {"low", "middle", "high"});
-        graph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
-        */
-    }
     public void OnRun(View view){
 
       /*  x = x+1;
@@ -62,19 +48,33 @@ public class MainActivity extends AppCompatActivity {
         this.graph = (GraphView) findViewById(R.id.graph);
         graph.removeAllSeries();
 
-        LineGraphSeries<DataPoint> new_series = new LineGraphSeries<DataPoint>(generateData());
-        /*        new DataPoint[] {
-                new DataPoint(x-1,y-1),
-                new DataPoint(x,y),
-                new DataPoint(x+1,y+1)
-        });
+        LineGraphSeries<DataPoint> new_series = new LineGraphSeries<DataPoint>(generateAcceleratorData());
 
-       /* this.series.resetData(new DataPoint[]{
-                new DataPoint(x - 1, y - 1),
-                new DataPoint(x, y),
-                new DataPoint(x + 1, y + 1)
-        });
-        */graph.addSeries(new_series);
+        graph.addSeries(new_series);
+
+    }
+
+    private DataPoint[] generateAcceleratorData() {
+        DatabaseMethods obj = new DatabaseMethods(this);
+        try {
+            obj.open();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        ArrayList<String> values = obj.GetAccelerometerValues();
+        //ArrayList<Float[]> list = obj.values;
+        //int count = 30;
+        DataPoint[] value = new DataPoint[10];
+        //int i=0;
+        //for (Float[] val: list) {
+        //    double x = val[0];
+        //    double y = val[1];
+        //    double z = val[2];
+//
+        //    DataPoint v = new DataPoint(x,y);
+        //    values[i++] = v;
+        //}
+        return value;
     }
 
     public void OnStop (View view){

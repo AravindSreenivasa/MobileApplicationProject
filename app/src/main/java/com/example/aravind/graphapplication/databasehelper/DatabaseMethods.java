@@ -4,6 +4,9 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
+
+import com.example.aravind.graphapplication.Classes.AccelerometerEntry;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -26,12 +29,12 @@ public class DatabaseMethods {
         database = dbhelper.getWritableDatabase();
     }
 
-    public void AddAccelerometerValues(String timeStamp, String x_values, String y_values, String z_values){
+    public void AddAccelerometerValues(AccelerometerEntry obj){
         ContentValues contentValue = new ContentValues();
-        contentValue.put(DbStrings.COLUMN_TIME_STAMP, timeStamp);
-        contentValue.put(DbStrings.COLUMN_X, x_values);
-        contentValue.put(DbStrings.COLUMN_Y, y_values);
-        contentValue.put(DbStrings.COLUMN_Y, z_values);
+        contentValue.put(DbStrings.COLUMN_TIME_STAMP, obj.timeStamp);
+        contentValue.put(DbStrings.COLUMN_X, obj.x);
+        contentValue.put(DbStrings.COLUMN_Y, obj.y);
+        contentValue.put(DbStrings.COLUMN_Y, obj.z);
         long insertId = database.insert(DbStrings.TABLE_Name_ID_Age_Sex, null, contentValue);
     }
 
@@ -39,19 +42,36 @@ public class DatabaseMethods {
         ArrayList<String> values = new ArrayList<String>();
         Cursor cursor = database.query(DbStrings.TABLE_Name_ID_Age_Sex, allColoumnns_Accelerator,null,null,null,null,null);
         //Cursor cursor = null;
+        int count =0;
+
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()){
+            count++;
+            cursor.moveToNext();
+        }
+        Log.v("SQL error", Integer.toString(count));
+
         try {
             cursor = database.rawQuery("select * from (select * from Name_ID_Age_Sex order by _id ASC limit 10) order by _id DESC", null);
-        }
-        catch (Exception ex){
+        } catch (Exception ex){
 
         }
         cursor.moveToFirst();
         while (!cursor.isAfterLast()){
-
+            //Log.v("SQL error", cursor.getString(0));
             values.add(cursor.getString(1));
             cursor.moveToNext();
         }
 
         return values;
+    }
+
+    public void DeleteAllAccelerometerEntries(){
+        try{
+            database.execSQL("delete from "+ DbStrings.TABLE_Name_ID_Age_Sex);
+        }
+        catch (Exception ex){
+
+        }
     }
 }

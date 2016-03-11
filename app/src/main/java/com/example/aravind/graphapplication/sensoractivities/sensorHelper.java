@@ -5,7 +5,9 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.util.Log;
 
+import com.example.aravind.graphapplication.Classes.AccelerometerEntry;
 import com.example.aravind.graphapplication.databasehelper.DatabaseMethods;
 
 import java.sql.SQLException;
@@ -20,12 +22,14 @@ public class sensorHelper implements SensorEventListener {
     private SensorManager mSensorManager;
     private Sensor mSensor;
     private Context context;
+    private static ArrayList<AccelerometerEntry> list;
 
     public sensorHelper(Context context1){
         context = context1;
         mSensorManager = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
         mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         mSensorManager.registerListener(this, mSensor, SensorManager.SENSOR_DELAY_NORMAL);
+        list = new ArrayList<AccelerometerEntry>();
     }
     @Override
     public void onSensorChanged(SensorEvent event) {
@@ -40,7 +44,29 @@ public class sensorHelper implements SensorEventListener {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        obj.AddAccelerometerValues(currentTimestamp.toString(), Double.toString(event.values[0]), Double.toString(event.values[1]), Double.toString(event.values[2]));
+
+        AccelerometerEntry accelerometerEntry = new AccelerometerEntry(currentTimestamp.toString(), Double.toString(event.values[0]), Double.toString(event.values[1]), Double.toString(event.values[2]));
+        list.add(accelerometerEntry);
+
+        /*try {
+
+        }
+        catch (Exception ex){
+            String s = ex.getMessage();
+            Log.v("SQL error",ex.getMessage());
+        }*/
+
+
+        if(list.size() == 10){
+            obj.DeleteAllAccelerometerEntries();
+            for(AccelerometerEntry accelerometerEntry1: list) {
+
+                obj.AddAccelerometerValues(accelerometerEntry1);
+            }
+            list.clear();
+
+        }
+
     }
 
     @Override

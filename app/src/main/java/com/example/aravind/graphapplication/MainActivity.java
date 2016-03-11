@@ -48,9 +48,11 @@ public class MainActivity extends AppCompatActivity {
         this.graph = (GraphView) findViewById(R.id.graph);
         graph.removeAllSeries();
 
-        LineGraphSeries<DataPoint> new_series = new LineGraphSeries<DataPoint>(generateAcceleratorData());
+        generateAcceleratorData();
 
-        graph.addSeries(new_series);
+        //LineGraphSeries<DataPoint> new_series = new LineGraphSeries<DataPoint>(generateAcceleratorData());
+
+        //graph.addSeries(new_series);
 
     }
 

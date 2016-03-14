@@ -18,10 +18,10 @@ public class DbStrings {
     public static final String CREATE_TABLE_Name_ID_Age_Sex_ = "create table "
             + TABLE_Name_ID_Age_Sex + "(" + COLUMN_ID
             + " integer primary key autoincrement, " + COLUMN_TIME_STAMP
-            + " text not null, " + COLUMN_X
-            + " text, " + COLUMN_Y
-            + " text, " + COLUMN_Z
-            + " text);";
+            + " text, " + COLUMN_X
+            + " real, " + COLUMN_Y
+            + " real, " + COLUMN_Z
+            + " real);";
 
     public static final String CREATE_TRIGGER_FOR_10_ENTRIES = "CREATE TRIGGER delete_till_10 INSERT ON "+TABLE_Name_ID_Age_Sex+" WHEN (select count(*) from \"+TABLE_Name_ID_Age_Sex+\")>10 " +
             "BEGIN" +

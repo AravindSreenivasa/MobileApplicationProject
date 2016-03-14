@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 
+import com.example.aravind.graphapplication.Classes.AccelerometerEntry;
 import com.example.aravind.graphapplication.databasehelper.DatabaseMethods;
 import com.example.aravind.graphapplication.sensoractivities.sensorHelper;
 import com.jjoe64.graphview.GraphView;
@@ -63,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        ArrayList<String> values = obj.GetAccelerometerValues();
+        ArrayList<AccelerometerEntry> values = obj.GetAccelerometerValues();
         //ArrayList<Float[]> list = obj.values;
         //int count = 30;
         DataPoint[] value = new DataPoint[10];

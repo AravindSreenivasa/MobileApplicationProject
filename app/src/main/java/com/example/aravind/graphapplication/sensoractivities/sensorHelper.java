@@ -10,6 +10,7 @@ import android.util.Log;
 import com.example.aravind.graphapplication.Classes.AccelerometerEntry;
 import com.example.aravind.graphapplication.databasehelper.DatabaseMethods;
 
+import java.security.Timestamp;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -23,12 +24,13 @@ public class sensorHelper implements SensorEventListener {
     private Sensor mSensor;
     private Context context;
     private static ArrayList<AccelerometerEntry> list;
+    private static java.sql.Timestamp prev = null;
 
     public sensorHelper(Context context1){
         context = context1;
         mSensorManager = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
         mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-        mSensorManager.registerListener(this, mSensor, SensorManager.SENSOR_DELAY_NORMAL);
+        mSensorManager.registerListener(this, mSensor, 100000000);
         list = new ArrayList<AccelerometerEntry>();
     }
     @Override
@@ -44,18 +46,16 @@ public class sensorHelper implements SensorEventListener {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-        AccelerometerEntry accelerometerEntry = new AccelerometerEntry(currentTimestamp.toString(), Double.toString(event.values[0]), Double.toString(event.values[1]), Double.toString(event.values[2]));
-        list.add(accelerometerEntry);
-
-        /*try {
-
+        boolean ok = true;
+        if(prev != null){
+            long diff = currentTimestamp.getTime() - prev.getTime();
+            ok = diff/1000 >= 1? true:false;
         }
-        catch (Exception ex){
-            String s = ex.getMessage();
-            Log.v("SQL error",ex.getMessage());
-        }*/
-
+        if(ok) {
+            AccelerometerEntry accelerometerEntry = new AccelerometerEntry(currentTimestamp, event.values[0], event.values[1], event.values[2]);
+            list.add(accelerometerEntry);
+            prev = currentTimestamp;
+        }
 
         if(list.size() == 10){
             obj.DeleteAllAccelerometerEntries();

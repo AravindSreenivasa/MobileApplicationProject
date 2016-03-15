@@ -28,6 +28,13 @@ public class sensorHelper implements SensorEventListener {
 
     public sensorHelper(Context context1){
         context = context1;
+        DatabaseMethods obj = new DatabaseMethods(context);
+
+        try {
+            obj.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         mSensorManager = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
         mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         mSensorManager.registerListener(this, mSensor, 100000000);

@@ -5,10 +5,10 @@ package com.example.aravind.graphapplication.databasehelper;
  */
 public class DbStrings {
 
-    public static final String DATABASE_NAME = "GraphApplication.db";
+    public static String DATABASE_NAME = "GraphApplication.db";
     public static final int DATABASE_VERSION = 1;
 
-    public static final String TABLE_Name_ID_Age_Sex = "Name_ID_Age_Sex";
+    public static String TABLE_Name_ID_Age_Sex = "Name_ID_Age_Sex";
     public static final String COLUMN_ID = "_id";
     public static final String COLUMN_TIME_STAMP = "timeStamp";
     public static final String COLUMN_X = "x_values";
@@ -27,4 +27,12 @@ public class DbStrings {
             "BEGIN" +
             "    DELETE FROM "+TABLE_Name_ID_Age_Sex+" where _id NOT IN (SELECT _id from "+TABLE_Name_ID_Age_Sex+" ORDER BY "+COLUMN_TIME_STAMP+" DESC LIMIT 10);"+
             "END;";
+
+    public static void setTableName(String tableName){
+        TABLE_Name_ID_Age_Sex = tableName;
+    }
+
+    public static void setDatabaseName(String databaseName){
+        DATABASE_NAME = databaseName;
+    }
 }

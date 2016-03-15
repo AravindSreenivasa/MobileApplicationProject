@@ -31,6 +31,10 @@ public class DatabaseMethods {
         database = dbhelper.getWritableDatabase();
     }
 
+    public void close() throws SQLException {
+        dbhelper.close();
+    }
+
     public void AddAccelerometerValues(AccelerometerEntry obj){
         ContentValues contentValue = new ContentValues();
         contentValue.put(DbStrings.COLUMN_TIME_STAMP, obj.timeStamp.toString());

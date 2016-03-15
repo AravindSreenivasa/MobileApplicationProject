@@ -10,7 +10,22 @@ import android.util.Log;
  */
 public class SQLiteHelperClass extends SQLiteOpenHelper {
 
-    public SQLiteHelperClass(Context context) {
+    private static SQLiteHelperClass mInstance = null;
+
+    public static SQLiteHelperClass getInstance(Context ctx) {
+        /**
+         * use the application context as suggested by CommonsWare.
+         * this will ensure that you dont accidentally leak an Activitys
+         * context (see this article for more information:
+         * http://android-developers.blogspot.nl/2009/01/avoiding-memory-leaks.html)
+         */
+        if (mInstance == null) {
+            mInstance = new SQLiteHelperClass(ctx.getApplicationContext());
+        }
+        return mInstance;
+    }
+
+    private SQLiteHelperClass(Context context) {
         super(context, DbStrings.DATABASE_NAME, null, DbStrings.DATABASE_VERSION);
     }
     @Override

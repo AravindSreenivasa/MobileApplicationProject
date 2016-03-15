@@ -17,13 +17,14 @@ import java.util.ArrayList;
  */
 public class DatabaseMethods {
 
+
     private SQLiteDatabase database;
     private SQLiteHelperClass dbhelper;
 
     private String[] allColoumnns_Accelerator = {DbStrings.COLUMN_ID, DbStrings.COLUMN_TIME_STAMP, DbStrings.COLUMN_X, DbStrings.COLUMN_Y, DbStrings.COLUMN_Z};
 
     public DatabaseMethods(Context context){
-        dbhelper = new SQLiteHelperClass(context);
+        dbhelper = SQLiteHelperClass.getInstance(context);
     }
 
     public void open() throws SQLException {

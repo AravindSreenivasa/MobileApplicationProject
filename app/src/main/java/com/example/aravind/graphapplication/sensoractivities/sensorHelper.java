@@ -53,19 +53,13 @@ public class sensorHelper implements SensorEventListener {
         }
         if(ok) {
             AccelerometerEntry accelerometerEntry = new AccelerometerEntry(currentTimestamp, event.values[0], event.values[1], event.values[2]);
+            obj.AddAccelerometerValues(accelerometerEntry);
             list.add(accelerometerEntry);
             prev = currentTimestamp;
+
+            //Log.v("SQL error",Integer.toString(obj.GetAccelerometerCount()));
         }
 
-        if(list.size() == 10){
-            obj.DeleteAllAccelerometerEntries();
-            for(AccelerometerEntry accelerometerEntry1: list) {
-
-                obj.AddAccelerometerValues(accelerometerEntry1);
-            }
-            list.clear();
-
-        }
 
     }
 

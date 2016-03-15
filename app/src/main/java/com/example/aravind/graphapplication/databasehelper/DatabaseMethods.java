@@ -40,18 +40,15 @@ public class DatabaseMethods {
         long insertId = database.insert(DbStrings.TABLE_Name_ID_Age_Sex, null, contentValue);
     }
 
+    public int GetAccelerometerCount(){
+        Cursor cursor = database.rawQuery("SELECT COUNT(*) FROM "+DbStrings.TABLE_Name_ID_Age_Sex, null);
+
+        cursor.moveToFirst();
+        return cursor.getInt(0);
+    }
     public ArrayList<AccelerometerEntry> GetAccelerometerValues() {
         ArrayList<AccelerometerEntry> values = new ArrayList<>();
         Cursor cursor = database.query(DbStrings.TABLE_Name_ID_Age_Sex, allColoumnns_Accelerator,null,null,null,null,null);
-        //Cursor cursor = null;
-        //int count =0;
-//
-        //cursor.moveToFirst();
-        //while (!cursor.isAfterLast()){
-        //    count++;
-        //    cursor.moveToNext();
-        //}
-        //Log.v("SQL error", Integer.toString(count));
 
         try {
             cursor = database.rawQuery("select * from (select * from Name_ID_Age_Sex order by _id ASC limit 10) order by _id DESC", null);

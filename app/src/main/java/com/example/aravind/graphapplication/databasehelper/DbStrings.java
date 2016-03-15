@@ -23,8 +23,8 @@ public class DbStrings {
             + " real, " + COLUMN_Z
             + " real);";
 
-    public static final String CREATE_TRIGGER_FOR_10_ENTRIES = "CREATE TRIGGER delete_till_10 INSERT ON "+TABLE_Name_ID_Age_Sex+" WHEN (select count(*) from \"+TABLE_Name_ID_Age_Sex+\")>10 " +
+    public static final String CREATE_TRIGGER_FOR_10_ENTRIES = "CREATE TRIGGER delete_till_10 INSERT ON "+TABLE_Name_ID_Age_Sex+" WHEN (select count(*) from "+TABLE_Name_ID_Age_Sex+")>10 " +
             "BEGIN" +
-            "    DELETE FROM "+CREATE_TABLE_Name_ID_Age_Sex_+" where _id NOT IN (SELECT _id from "+CREATE_TABLE_Name_ID_Age_Sex_+" ORDER BY insertion_date DESC LIMIT 10)"+
+            "    DELETE FROM "+TABLE_Name_ID_Age_Sex+" where _id NOT IN (SELECT _id from "+TABLE_Name_ID_Age_Sex+" ORDER BY "+COLUMN_TIME_STAMP+" DESC LIMIT 10);"+
             "END;";
 }

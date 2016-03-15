@@ -32,12 +32,12 @@ public class SQLiteHelperClass extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         DbStrings dbs = new DbStrings();
         db.execSQL(dbs.CREATE_TABLE_Name_ID_Age_Sex_);
-        /*try {
+        try {
             db.execSQL(dbs.CREATE_TRIGGER_FOR_10_ENTRIES);
         }
         catch (Exception ex){
             Log.v("SQL error",ex.getMessage());
-        }*/
+        }
     }
 
     @Override

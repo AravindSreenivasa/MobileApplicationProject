@@ -1,5 +1,6 @@
 package com.example.aravind.graphapplication;
 
+import android.graphics.Color;
 import android.os.Environment;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +13,7 @@ import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.example.aravind.graphapplication.Classes.AccelerometerEntry;
 import com.example.aravind.graphapplication.databasehelper.DatabaseMethods;
 import com.example.aravind.graphapplication.sensoractivities.sensorHelper;
 import com.jjoe64.graphview.GraphView;       // Graph view library downloaded from http://www.android-graphview.org/
@@ -21,13 +23,16 @@ import com.jjoe64.graphview.series.LineGraphSeries;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
 
 public class MainActivity extends AppCompatActivity { // parts of code used from https://github.com/jjoe64/GraphView-Demos
     private final Handler mHandler = new Handler();
     GraphView graph;
-    LineGraphSeries<DataPoint> series;   // declares line graph
+    LineGraphSeries<DataPoint> xseries;   // declares line graph
+    LineGraphSeries<DataPoint> yseries;
+    LineGraphSeries<DataPoint> zseries;
     private Runnable mTimer2;
     int x=1,y=19;
     private double graph2LastXValue = 40d;
@@ -36,7 +41,7 @@ public class MainActivity extends AppCompatActivity { // parts of code used from
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //sensorHelper obj = new sensorHelper(this);
+        sensorHelper obj = new sensorHelper(this);
         buildUI();
 
         String state = Environment.getExternalStorageState();
@@ -63,42 +68,76 @@ public class MainActivity extends AppCompatActivity { // parts of code used from
         */
     }
 
-    private void generateAcceleratorData() { //DataPoint[]
+    private ArrayList<AccelerometerEntry> generateAcceleratorData() { //DataPoint[]
         DatabaseMethods obj = new DatabaseMethods(this);
         try {
             obj.open();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        ArrayList<String> values = obj.GetAccelerometerValues();
-       // ArrayList<Float[]> list = obj.values;
-        //int count = 30;
-       // DataPoint[] value = new DataPoint[10];
-        //int i=0;
-       // Float[] val = new Float[3];
-        Log.d("mytag", values.toString());
-        //for (Float[] val: list) {
-        //    double x = val[0];
-        //    double y = val[1];
-        //    double z = val[2];
-//
-        //    DataPoint v = new DataPoint(x,y);
-        //    values[i++] = v;
-        //}
-     //   return value;
+        double [] x_val = new double[10];
+
+        ArrayList<AccelerometerEntry> values = obj.GetAccelerometerValues();
+        Collections.reverse(values);
+
+        for(int i=0; i< values.size();i++){
+            Log.d("mytag", values.get(i).timeStamp + " " + values.get(i).x + " " + values.get(i).y + " " + values.get(i).z);
+        }
+        return values;
+
     }
 
     public void OnRun(View view){
 
         Log.d("VERBOSE", "button press");
-       // generateAcceleratorData();
-        mHandler.removeCallbacks(mTimer2);
+        ArrayList<AccelerometerEntry> values = generateAcceleratorData();
+
+        this.graph = (GraphView) findViewById(R.id.graph);
+        DataPoint[] xvalue = new DataPoint[10];
+        DataPoint[] yvalue = new DataPoint[10];
+        DataPoint[] zvalue = new DataPoint[10];
+        for(int i = 0; i < 10; i++) {
+            xvalue[i] = new DataPoint(i,values.get(i).x );//(values.get(i).timeStamp.getSeconds()
+            yvalue[i] = new DataPoint(i,values.get(i).y );//values.get(i).timeStamp.getSeconds()
+            zvalue[i] = new DataPoint(i,values.get(i).z );//values.get(i).timeStamp.getSeconds()
+        }
+        graph.removeAllSeries();
+        xseries = new LineGraphSeries<DataPoint>( xvalue);
+        yseries = new LineGraphSeries<DataPoint>( yvalue);
+        zseries = new LineGraphSeries<DataPoint>( zvalue);
+
+        xseries.setTitle("X");
+        yseries.setTitle("Y");
+        zseries.setTitle("Z");
+
+        xseries.setColor(Color.RED);
+        yseries.setColor(Color.GREEN);
+        zseries.setColor(Color.BLUE);
+
+        graph.getLegendRenderer().setVisible(true);
+        graph.getLegendRenderer().setFixedPosition(0, 0);
+
+        graph.getViewport().setXAxisBoundsManual(true);   // defines visible grid bounds
+        graph.getViewport().setMinX(0);
+        graph.getViewport().setMaxX(10);
+
+        graph.getViewport().setYAxisBoundsManual(true);  // defines visible grid bounds
+        graph.getViewport().setMinY(-10);
+        graph.getViewport().setMaxY(10);
+
+
+        graph.addSeries(xseries);
+        graph.addSeries(yseries);
+        graph.addSeries(zseries);
+
+
+     /*   mHandler.removeCallbacks(mTimer2);
         this.graph = (GraphView) findViewById(R.id.graph);
         graph.removeAllSeries();
         graph2LastXValue = 40d;
-        series = new LineGraphSeries<DataPoint>(); // initializes graph
+        xseries = new LineGraphSeries<DataPoint>(); // initializes graph
 
-        graph.addSeries(series);
+        graph.addSeries(xseries);
         graph.getViewport().setXAxisBoundsManual(true);   // defines visible grid bounds
         graph.getViewport().setMinX(0);
         graph.getViewport().setMaxX(40);
@@ -107,12 +146,12 @@ public class MainActivity extends AppCompatActivity { // parts of code used from
             @Override
             public void run() {
                 graph2LastXValue += 2d;
-                series.appendData(new DataPoint(graph2LastXValue, getRandom()), true, 40); // appends random y axis data to graph
+                xseries.appendData(new DataPoint(graph2LastXValue, getRandom()), true, 40); // appends random y axis data to graph
                 mHandler.postDelayed(this, 200);
             }
         };
         mHandler.postDelayed(mTimer2, 1000);  //calls function every sec.
-
+   */
     }
 
     public void OnStop (View view){   // clears form fields and graph

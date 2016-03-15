@@ -85,8 +85,8 @@ public class uploadtoserver extends AsyncTask<Context, String, String> {
         }
 
         try {
-            File file = new File(pathToOurFile,"FoodBank.db");
-            String fileName = "FoodBank.db";//pathToOurFile +File.separator + "databases"+ File.separator+ "FoodBank.db";
+            File file = new File(pathToOurFile,"GraphApplication.db");
+            String fileName = "GraphApplication.db";//pathToOurFile +File.separator + "databases"+ File.separator+ "FoodBank.db";
             Log.v("uploader", "path sent:" + fileName);
             if(file.exists()){
                 //listf(pathToOurFile);

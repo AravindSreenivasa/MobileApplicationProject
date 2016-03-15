@@ -5,9 +5,12 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.util.Log;
 
+import com.example.aravind.graphapplication.Classes.AccelerometerEntry;
 import com.example.aravind.graphapplication.databasehelper.DatabaseMethods;
 
+import java.security.Timestamp;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -20,12 +23,15 @@ public class sensorHelper implements SensorEventListener {
     private SensorManager mSensorManager;
     private Sensor mSensor;
     private Context context;
+    private static ArrayList<AccelerometerEntry> list;
+    private static java.sql.Timestamp prev = null;
 
     public sensorHelper(Context context1){
         context = context1;
         mSensorManager = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
         mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-        mSensorManager.registerListener(this, mSensor, SensorManager.SENSOR_DELAY_NORMAL);
+        mSensorManager.registerListener(this, mSensor, 100000000);
+        list = new ArrayList<AccelerometerEntry>();
     }
     @Override
     public void onSensorChanged(SensorEvent event) {
@@ -40,7 +46,27 @@ public class sensorHelper implements SensorEventListener {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        obj.AddAccelerometerValues(currentTimestamp.toString(), Double.toString(event.values[0]), Double.toString(event.values[1]), Double.toString(event.values[2]));
+        boolean ok = true;
+        if(prev != null){
+            long diff = currentTimestamp.getTime() - prev.getTime();
+            ok = diff/1000 >= 1? true:false;
+        }
+        if(ok) {
+            AccelerometerEntry accelerometerEntry = new AccelerometerEntry(currentTimestamp, event.values[0], event.values[1], event.values[2]);
+            list.add(accelerometerEntry);
+            prev = currentTimestamp;
+        }
+
+        if(list.size() == 10){
+            obj.DeleteAllAccelerometerEntries();
+            for(AccelerometerEntry accelerometerEntry1: list) {
+
+                obj.AddAccelerometerValues(accelerometerEntry1);
+            }
+            list.clear();
+
+        }
+
     }
 
     @Override
